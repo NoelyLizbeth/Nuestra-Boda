@@ -64,10 +64,60 @@
             display: inline-block;
         }
 
-        .wax-seal {
-            background: radial-gradient(circle at 35% 35%, #f1d77a, #c59b27 40%, #7a5806 85%);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.6), inset 0 -3px 6px rgba(0,0,0,0.4);
-            border: 2px solid #8a640b;
+        /* Portada de sobre: imagen a pantalla completa y transición al abrir */
+        #coverScreen {
+            min-height: 100svh;
+            height: 100svh;
+            background: #f5efe4;
+            isolation: isolate;
+        }
+        #envelopeContainer {
+            width: min(100vw, 51.8svh);
+            aspect-ratio: 928 / 1792;
+            height: auto;
+            max-height: 100svh;
+        }
+        #envelopeArtwork {
+            transition: transform .75s cubic-bezier(.2,.75,.25,1), filter .75s ease, opacity .65s ease;
+            transform-origin: center 58%;
+            will-change: transform, opacity;
+        }
+        #envelopeContainer.envelope-open #envelopeArtwork {
+            animation: envelope-lift-open .85s cubic-bezier(.2,.75,.25,1) forwards;
+        }
+        @keyframes envelope-lift-open {
+            0%   { transform: perspective(1100px) rotateX(0) scale(1); filter: brightness(1); opacity: 1; }
+            45%  { transform: perspective(1100px) rotateX(13deg) scale(1.045) translateY(-9px); filter: brightness(1.1); opacity: .96; }
+            100% { transform: perspective(1100px) rotateX(23deg) scale(1.075) translateY(-18px); filter: brightness(1.16); opacity: .72; }
+        }
+        .seal-hotspot {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        .seal-hint {
+            position: absolute;
+            left: 50%;
+            top: 68%;
+            transform: translateX(-50%);
+            z-index: 21;
+            white-space: nowrap;
+            color: #f7e9c5;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(8px, 2.1vw, 10px);
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            text-shadow: 0 1px 3px rgba(15, 35, 25, .8);
+            pointer-events: none;
+            animation: hint-soft-pulse 2s ease-in-out infinite;
+        }
+        @keyframes hint-soft-pulse {
+            0%, 100% { opacity: .78; }
+            50% { opacity: 1; }
+        }
+        #envelopeContainer.envelope-open .seal-hint {
+            opacity: 0;
+            animation: none;
+            transition: opacity .2s ease;
         }
 
         .envelope-flap {
@@ -119,7 +169,7 @@
     </button>
 
 
-    <!-- APARTADO 1: PANTALLA DE PORTADA Y SOBRE INTERACTIVO -->
+    <!-- APARTADO 1: PORTADA CON SOBRE REALISTA A PANTALLA COMPLETA -->
     <div id="coverScreen" class="relative w-full min-h-[100svh] h-[100svh] flex items-center justify-center overflow-hidden transition-opacity duration-700 z-30">
         <div id="envelopeContainer" class="relative flex items-center justify-center cursor-pointer">
             <img
@@ -137,15 +187,17 @@
                 aria-label="Abrir invitación tocando el sello"
                 class="seal-hotspot absolute left-1/2 top-[58.2%] -translate-x-1/2 -translate-y-1/2 w-[25%] h-[13%] max-w-36 z-20 rounded-full cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-300/80">
             </button>
+            <span class="seal-hint">Haz clic aquí</span>
         </div>
 
         <!-- Pases personalizados: conserva number, pases y pass en la URL -->
         <div class="absolute bottom-2 left-0 right-0 z-30 text-center pointer-events-none">
             <p class="font-cinzel text-[9px] sm:text-[10px] tracking-[0.28em] text-[#315b45] uppercase font-semibold mb-0.5">Hemos reservado</p>
-            <span id="passesCount" class="font-garamond text-xl sm:text-2xl font-bold text-[#315b45]">2</span>
+            <span id="passesCount" class="font-garamond text-xl sm:text-2xl font-bold text-[#315b45]">1</span>
             <p id="passesLabel" class="font-cinzel text-[9px] sm:text-[10px] tracking-[0.2em] text-[#315b45] uppercase font-medium">LUGARES EN SU HONOR</p>
         </div>
     </div>
+
 
     <!-- APARTADO 2: CONTENIDO PRINCIPAL -->
     <main id="mainContent" class="hidden opacity-0 max-w-3xl mx-auto w-full px-4 py-8 sm:py-12 transition-all duration-1000 space-y-12">
@@ -507,6 +559,8 @@
             const envelope = document.getElementById('envelopeContainer');
             const mainContent = document.getElementById('mainContent');
 
+            if (cover.classList.contains('is-opening')) return;
+            cover.classList.add('is-opening');
             envelope.classList.add('envelope-open');
 
             const audio = document.getElementById('bgAudio');
