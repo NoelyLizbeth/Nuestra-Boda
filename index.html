@@ -120,101 +120,32 @@
 
 
     <!-- APARTADO 1: PANTALLA DE PORTADA Y SOBRE INTERACTIVO -->
-    <div id="coverScreen" class="relative min-h-screen w-full flex flex-col justify-between items-center py-8 px-4 overflow-hidden transition-all duration-1000 z-30">
-        
-        <!-- Adornos Botánicos Izquierda -->
-        <div class="absolute -top-6 -left-6 w-56 h-56 md:w-80 md:h-80 pointer-events-none z-10 opacity-95">
-            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full transform -rotate-12">
-                <path d="M10 10 Q 90 40 160 110" stroke="#C59B27" stroke-width="1.5" stroke-dasharray="3 2"/>
-                <circle cx="40" cy="22" r="8" fill="#0B3D2E" opacity="0.85"/>
-                <circle cx="75" cy="38" r="11" fill="#12523F" opacity="0.9"/>
-                <circle cx="110" cy="65" r="13" fill="#072B20" opacity="0.95"/>
-                <circle cx="140" cy="98" r="10" fill="#1A6A52" opacity="0.85"/>
-                <path d="M50 80 Q 60 60 70 80 Q 80 90 60 100 Q 40 90 50 80 Z" fill="#FFFDF9" stroke="#E8DFC8" stroke-width="1"/>
-                <circle cx="60" cy="85" r="3" fill="#D4AF37"/>
-                <path d="M20 110 Q 35 95 45 110 Q 50 125 30 130 Q 15 120 20 110 Z" fill="#FAF7F2" stroke="#D4AF37" stroke-width="0.75"/>
-                <path d="M80 20 C 90 10, 100 25, 90 35 C 80 45, 70 30, 80 20 Z" fill="url(#goldGrad)" opacity="0.9"/>
-                <path d="M125 50 C 135 40, 145 55, 135 65 C 125 75, 115 60, 125 50 Z" fill="url(#goldGrad)" opacity="0.85"/>
-                <defs>
-                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#BF953F"/>
-                        <stop offset="50%" stop-color="#FCF6BA"/>
-                        <stop offset="100%" stop-color="#AA771C"/>
-                    </linearGradient>
-                </defs>
-            </svg>
+    <div id="coverScreen" class="relative w-full min-h-[100svh] h-[100svh] flex items-center justify-center overflow-hidden transition-opacity duration-700 z-30">
+        <div id="envelopeContainer" class="relative flex items-center justify-center cursor-pointer">
+            <img
+                id="envelopeArtwork"
+                src="sobre-boda.png"
+                alt="Sobre verde esmeralda con sello dorado: Lizbeth & Noel"
+                class="w-full h-full object-contain select-none"
+                draggable="false"
+            >
+
+            <!-- Área táctil colocada encima del sello dorado de la imagen -->
+            <button
+                type="button"
+                onclick="openInvitation()"
+                aria-label="Abrir invitación tocando el sello"
+                class="seal-hotspot absolute left-1/2 top-[58.2%] -translate-x-1/2 -translate-y-1/2 w-[25%] h-[13%] max-w-36 z-20 rounded-full cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-300/80">
+            </button>
         </div>
 
-        <!-- Adornos Botánicos Derecha -->
-        <div class="absolute -bottom-6 -right-6 w-56 h-56 md:w-80 md:h-80 pointer-events-none z-10 opacity-95">
-            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full transform rotate-180">
-                <path d="M10 10 Q 90 40 160 110" stroke="#C59B27" stroke-width="1.5" stroke-dasharray="3 2"/>
-                <circle cx="40" cy="22" r="9" fill="#0B3D2E" opacity="0.9"/>
-                <circle cx="75" cy="38" r="12" fill="#12523F" opacity="0.95"/>
-                <circle cx="110" cy="65" r="14" fill="#072B20"/>
-                <circle cx="140" cy="98" r="11" fill="#1A6A52" opacity="0.85"/>
-                <path d="M50 80 Q 60 60 70 80 Q 80 90 60 100 Q 40 90 50 80 Z" fill="#FFFDF9" stroke="#E8DFC8" stroke-width="1"/>
-                <circle cx="60" cy="85" r="3" fill="#D4AF37"/>
-                <path d="M80 20 C 90 10, 100 25, 90 35 C 80 45, 70 30, 80 20 Z" fill="url(#goldGrad)" opacity="0.9"/>
-            </svg>
+        <!-- Pases personalizados: conserva number, pases y pass en la URL -->
+        <div class="absolute bottom-2 left-0 right-0 z-30 text-center pointer-events-none">
+            <p class="font-cinzel text-[9px] sm:text-[10px] tracking-[0.28em] text-[#315b45] uppercase font-semibold mb-0.5">Hemos reservado</p>
+            <span id="passesCount" class="font-garamond text-xl sm:text-2xl font-bold text-[#315b45]">2</span>
+            <p id="passesLabel" class="font-cinzel text-[9px] sm:text-[10px] tracking-[0.2em] text-[#315b45] uppercase font-medium">LUGARES EN SU HONOR</p>
         </div>
-
-        <!-- Título -->
-        <header class="text-center pt-6 z-20 max-w-lg mx-auto">
-            <h3 class="font-cinzel text-xs md:text-sm tracking-[0.35em] text-gray-700 uppercase mb-2 font-semibold">Nuestra Boda</h3>
-            <h1 class="font-script text-5xl md:text-7xl text-gold-gradient py-1 drop-shadow-sm leading-tight">Lizbeth & Noel</h1>
-            <p class="font-garamond text-lg md:text-xl text-gray-800 tracking-widest mt-2 font-medium">17 de ABRIL del 2027</p>
-        </header>
-
-        <!-- Sobre -->
-        <div class="relative my-6 w-full max-w-md flex flex-col items-center justify-center z-20">
-            <div id="envelopeContainer" class="relative w-80 h-52 sm:w-96 sm:h-60 bg-emerald-900 rounded-lg shadow-2xl cursor-pointer transform transition-transform hover:scale-[1.02] duration-300 border border-emerald-800/80 flex items-center justify-center overflow-visible">
-                
-                <div class="envelope-flap absolute top-0 left-0 w-full h-full pointer-events-none">
-                    <svg viewBox="0 0 384 240" class="w-full h-full drop-shadow-md overflow-visible">
-                        <polygon points="0,0 384,0 192,130" fill="#0b3d2e" stroke="#072b20" stroke-width="1"/>
-                        <polygon points="0,0 192,130" fill="#12523f" opacity="0.3"/>
-                    </svg>
-                </div>
-
-                <div class="absolute inset-0 pointer-events-none rounded-lg overflow-hidden z-10">
-                    <svg viewBox="0 0 384 240" class="w-full h-full">
-                        <polygon points="0,0 0,240 180,120" fill="#093326"/>
-                        <polygon points="384,0 384,240 204,120" fill="#072b20"/>
-                        <polygon points="0,240 384,240 192,110" fill="#0b3d2e"/>
-                        <line x1="0" y1="240" x2="192" y2="110" stroke="#051f17" stroke-width="2" opacity="0.4"/>
-                        <line x1="384" y1="240" x2="192" y2="110" stroke="#051f17" stroke-width="2" opacity="0.4"/>
-                    </svg>
-                </div>
-
-                <div id="waxSeal" onclick="openInvitation()" class="wax-seal absolute top-[42%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 rounded-full z-30 flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-110 active:scale-95 group">
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full border border-amber-300/40 flex items-center justify-center text-center p-1">
-                        <span class="font-script text-amber-100 text-xl sm:text-2xl font-bold tracking-tighter drop-shadow-md select-none group-hover:scale-105 transition-transform">L&N</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="relative mt-6 flex flex-col items-center justify-center">
-                <svg class="w-24 h-12 text-amber-600 -mt-2 animate-pulse-subtle" viewBox="0 0 100 50" fill="none">
-                    <path d="M 20 40 Q 10 10, 50 10 Q 80 10, 65 30 Q 55 40, 48 22" stroke="#B38728" stroke-width="2" stroke-dasharray="3 3" fill="none" stroke-linecap="round"/>
-                    <polygon points="44,26 52,18 52,28" fill="#B38728"/>
-                </svg>
-
-                <button onclick="openInvitation()" class="font-cinzel text-xs tracking-widest text-gray-800 font-bold uppercase hover:text-amber-700 transition-colors py-1 px-3 border-b border-amber-600/40">
-                    CLICK PARA ABRIR LA INVITACIÓN
-                </button>
-            </div>
-        </div>
-
-        <footer class="text-center z-20 pb-4">
-            <p class="font-cinzel text-xs tracking-widest text-gray-600 uppercase font-medium mb-2">HEMOS RESERVADO</p>
-            <div class="inline-flex items-center justify-center min-w-[3.5rem] h-12 px-3 rounded-xl bg-white border-2 border-emerald-800 shadow-md my-1">
-                <span id="passesCount" class="font-garamond text-2xl font-bold text-emerald-900">2</span>
-            </div>
-            <p id="passesLabel" class="font-cinzel text-xs tracking-widest text-gray-600 uppercase font-medium mt-2">LUGARES EN SU HONOR</p>
-        </footer>
     </div>
-
 
     <!-- APARTADO 2: CONTENIDO PRINCIPAL -->
     <main id="mainContent" class="hidden opacity-0 max-w-3xl mx-auto w-full px-4 py-8 sm:py-12 transition-all duration-1000 space-y-12">
