@@ -4,17 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boda Lizbeth & Noel - 17 de Abril, 2027</title>
-    
-    <!-- Tailwind CSS CDN -->
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Italianno&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">    
-    <!-- FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Italianno&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -25,7 +22,7 @@
                             800: '#0b3d2e',
                             700: '#12523f',
                             600: '#1a6a52',
-                            500: '28543E',
+                            500: '#28543E',
                         },
                         cream: {
                             50: '#FAF7F2',
@@ -54,7 +51,9 @@
     <style>
         .bg-linen {
             background-color: #FAF7F2;
-            background-image: radial-gradient(#e2d9ca 0.75px, transparent 0.75px), radial-gradient(#e2d9ca 0.75px, #FAF7F2 0.75px);
+            background-image:
+                radial-gradient(#e2d9ca 0.75px, transparent 0.75px),
+                radial-gradient(#e2d9ca 0.75px, #FAF7F2 0.75px);
             background-size: 30px 30px;
             background-position: 0 0, 15px 15px;
         }
@@ -66,36 +65,54 @@
             display: inline-block;
         }
 
-        /* Portada de sobre: imagen a pantalla completa y transición al abrir */
+        /* Portada del sobre */
         #coverScreen {
             min-height: 100svh;
             height: 100svh;
             background: #f5efe4;
             isolation: isolate;
         }
+
         #envelopeContainer {
             width: min(100vw, 51.8svh);
             aspect-ratio: 928 / 1792;
             height: auto;
             max-height: 100svh;
         }
+
         #envelopeArtwork {
             transition: transform .75s cubic-bezier(.2,.75,.25,1), filter .75s ease, opacity .65s ease;
             transform-origin: center 58%;
             will-change: transform, opacity;
         }
+
         #envelopeContainer.envelope-open #envelopeArtwork {
             animation: envelope-lift-open .85s cubic-bezier(.2,.75,.25,1) forwards;
         }
+
         @keyframes envelope-lift-open {
-            0%   { transform: perspective(1100px) rotateX(0) scale(1); filter: brightness(1); opacity: 1; }
-            45%  { transform: perspective(1100px) rotateX(13deg) scale(1.045) translateY(-9px); filter: brightness(1.1); opacity: .96; }
-            100% { transform: perspective(1100px) rotateX(23deg) scale(1.075) translateY(-18px); filter: brightness(1.16); opacity: .72; }
+            0% {
+                transform: perspective(1100px) rotateX(0) scale(1);
+                filter: brightness(1);
+                opacity: 1;
+            }
+            45% {
+                transform: perspective(1100px) rotateX(13deg) scale(1.045) translateY(-9px);
+                filter: brightness(1.1);
+                opacity: .96;
+            }
+            100% {
+                transform: perspective(1100px) rotateX(23deg) scale(1.075) translateY(-18px);
+                filter: brightness(1.16);
+                opacity: .72;
+            }
         }
+
         .seal-hotspot {
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
         }
+
         .seal-hint {
             position: absolute;
             left: 50%;
@@ -112,10 +129,12 @@
             pointer-events: none;
             animation: hint-soft-pulse 2s ease-in-out infinite;
         }
+
         @keyframes hint-soft-pulse {
             0%, 100% { opacity: .78; }
             50% { opacity: 1; }
         }
+
         #envelopeContainer.envelope-open .seal-hint {
             opacity: 0;
             animation: none;
@@ -124,7 +143,7 @@
 
         .envelope-flap {
             transform-origin: top center;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform .8s cubic-bezier(.4, 0, .2, 1);
             z-index: 20;
         }
 
@@ -137,6 +156,7 @@
             0%, 100% { transform: translateY(0) scale(1); }
             50% { transform: translateY(-4px) scale(1.03); }
         }
+
         .animate-pulse-subtle {
             animation: pulse-subtle 2.5s infinite ease-in-out;
         }
@@ -144,9 +164,11 @@
         ::-webkit-scrollbar {
             width: 6px;
         }
+
         ::-webkit-scrollbar-track {
             background: #FAF7F2;
         }
+
         ::-webkit-scrollbar-thumb {
             background: #0b3d2e;
             border-radius: 3px;
@@ -162,16 +184,15 @@
     </audio>
 
     <!-- BOTÓN FLOTANTE DE CONTROL DE AUDIO -->
-    <button id="audioToggleBtn" onclick="toggleAudio()" class="fixed bottom-5 right-5 z-50 bg-emerald-800 text-amber-200 w-12 h-12 rounded-full shadow-2xl border-2 border-amber-300/60 flex items-center justify-center hover:scale-110 transition-all duration-300 group focus:outline-none" title="Música de fondo">
+    <button id="audioToggleBtn" onclick="toggleAudio()" class="fixed bottom-5 right-5 z-50 bg-emerald-800 text-amber-200 w-12 h-12 rounded-full shadow-2xl border-2 border-amber-300/60 flex items-center justify-center hover:scale-110 transition-all duration-300 group focus:outline-none" title="Música de fondo" aria-label="Activar o pausar música">
         <i id="audioIcon" class="fas fa-music text-lg group-hover:rotate-12 transition-transform"></i>
         <span class="absolute -top-1 -right-1 flex h-3 w-3">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
         </span>
     </button>
 
-
-    <!-- APARTADO 1: PORTADA CON SOBRE REALISTA A PANTALLA COMPLETA -->
+    <!-- APARTADO 1: PORTADA CON SOBRE -->
     <div id="coverScreen" class="relative w-full min-h-[100svh] h-[100svh] flex items-center justify-center overflow-hidden transition-opacity duration-700 z-30">
         <div id="envelopeContainer" class="relative flex items-center justify-center cursor-pointer">
             <img
@@ -182,7 +203,6 @@
                 draggable="false"
             >
 
-            <!-- Área táctil colocada encima del sello dorado de la imagen -->
             <button
                 type="button"
                 onclick="openInvitation()"
@@ -192,7 +212,7 @@
             <span class="seal-hint">Haz clic aquí</span>
         </div>
 
-        <!-- Contador HTML independiente: el número NO está dentro de la imagen -->
+        <!-- CONTADOR DE LUGARES RESERVADOS -->
         <div class="absolute bottom-[4.2%] left-1/2 -translate-x-1/2 z-30 w-[78%] max-w-[310px] text-center pointer-events-none">
             <div class="inline-flex flex-col items-center justify-center px-5 py-2 rounded-xl bg-[#f8f3e9]/90 border border-[#b99a55]/70 shadow-[0_4px_14px_rgba(48,57,37,.12)] backdrop-blur-[2px]">
                 <p class="font-cinzel text-[9px] sm:text-[10px] tracking-[0.24em] text-[#52634b] uppercase font-semibold">Hemos reservado</p>
@@ -204,15 +224,13 @@
         </div>
     </div>
 
-
     <!-- APARTADO 2: CONTENIDO PRINCIPAL -->
     <main id="mainContent" class="hidden opacity-0 max-w-3xl mx-auto w-full px-4 py-8 sm:py-12 transition-all duration-1000 space-y-12">
-        
+
         <!-- SECCIÓN 1: FOTO PORTADA PRINCIPAL -->
         <section class="text-center bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-amber-200/60 overflow-hidden relative">
             <div class="h-2 bg-gradient-to-r from-emerald-900 via-amber-400 to-emerald-900"></div>
-            
-            <!-- 📷 IMAGEN EN GITHUB: img/portada.jpg -->
+
             <div class="relative w-full h-72 sm:h-96 overflow-hidden group">
                 <img src="portada.jpg" alt="Lizbeth y Noel" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"></div>
@@ -225,54 +243,73 @@
                 <p class="font-cinzel text-xs tracking-[0.3em] text-emerald-900 uppercase font-semibold mb-3">Con la bendición de Dios y nuestros padres</p>
                 <h2 class="font-italiano text-5xl md:text-7xl text-emerald-500 mb-2">Lizbeth & Noel</h2>
                 <p class="font-garamond text-xl text-gray-700 italic max-w-lg mx-auto">"El amor nos unió en un solo camino, y queremos recorrerlo junto a ti en este día especial"</p>
-                
-                <div class="my-6 border-t border-b border-amber-200/80 py-4 max-w-md mx-auto">
-                    <p class="font-cinzel text-lg md:text-xl tracking-wider text-emerald-900 font-bold">SÁBADO, 17 DE ABRIL DE 2027</p>
-                    <p class="font-garamond text-md text-gray-600">Hermosillo, Sonora</p>
-                </div>
 
-                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+Lizbeth+%26+Noel&dates=20270417T180000/20270418T020000&details=¡Acompáñanos+a+celebrar+nuestra+boda!&location=Parroquia+Santa+Eduwiges,+Hermosillo,+Sonora" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-100/80 text-amber-900 border border-amber-300 font-cinzel text-xs font-semibold hover:bg-amber-200 transition-colors shadow-sm mb-6">
-                    <i class="far fa-calendar-plus text-base"></i> Agregar a Google Calendar
-                </a>
+                <!-- FECHA, CUENTA REGRESIVA Y CALENDARIO CON FOTO DE FONDO -->
+                <div class="relative my-6 rounded-2xl overflow-hidden shadow-xl border border-amber-300/60">
+                    <img
+                        src="galeria7.jpeg"
+                        alt="Nuestro compromiso"
+                        class="absolute inset-0 w-full h-full object-cover object-center"
+                    >
+                    <div class="absolute inset-0 bg-emerald-950/65"></div>
 
-                <div class="mt-8 pt-6 border-t border-amber-100">
-                    <h4 class="font-cinzel text-xs uppercase tracking-widest text-gray-500 mb-4 font-semibold">Faltan únicamente</h4>
-                    <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto">
-                        <div class="bg-emerald-900 text-amber-100 p-2 sm:p-3 rounded-lg shadow">
-                            <span id="cdDays" class="block font-garamond text-2xl sm:text-3xl font-bold">00</span>
-                            <span class="font-cinzel text-[10px] uppercase tracking-wider text-amber-200/80">Días</span>
+                    <div class="relative z-10 p-5 sm:p-7 text-center">
+                        <p class="font-cinzel text-lg md:text-xl tracking-wider text-amber-100 font-bold">
+                            SÁBADO, 17 DE ABRIL DE 2027
+                        </p>
+                        <p class="font-garamond text-md text-white/90 mt-1">
+                            Hermosillo, Sonora
+                        </p>
+
+                        <div class="mt-6">
+                            <h4 class="font-cinzel text-xs uppercase tracking-widest text-amber-100 mb-4 font-semibold">
+                                Faltan únicamente
+                            </h4>
+
+                            <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto">
+                                <div class="bg-emerald-950/65 text-amber-100 p-2 sm:p-3 rounded-lg border border-amber-200/30">
+                                    <span id="cdDays" class="block font-garamond text-2xl sm:text-3xl font-bold">00</span>
+                                    <span class="font-cinzel text-[10px] uppercase tracking-wider text-amber-200/80">Días</span>
+                                </div>
+                                <div class="bg-emerald-950/65 text-amber-100 p-2 sm:p-3 rounded-lg border border-amber-200/30">
+                                    <span id="cdHours" class="block font-garamond text-2xl sm:text-3xl font-bold">00</span>
+                                    <span class="font-cinzel text-[10px] uppercase tracking-wider text-amber-200/80">Hs</span>
+                                </div>
+                                <div class="bg-emerald-950/65 text-amber-100 p-2 sm:p-3 rounded-lg border border-amber-200/30">
+                                    <span id="cdMinutes" class="block font-garamond text-2xl sm:text-3xl font-bold">00</span>
+                                    <span class="font-cinzel text-[10px] uppercase tracking-wider text-amber-200/80">Min</span>
+                                </div>
+                                <div class="bg-emerald-950/65 text-amber-100 p-2 sm:p-3 rounded-lg border border-amber-200/30">
+                                    <span id="cdSeconds" class="block font-garamond text-2xl sm:text-3xl font-bold">00</span>
+                                    <span class="font-cinzel text-[10px] uppercase tracking-wider text-amber-200/80">Seg</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="bg-emerald-900 text-amber-100 p-2 sm:p-3 rounded-lg shadow">
-                            <span id="cdHours" class="block font-garamond text-2xl sm:text-3xl font-bold">00</span>
-                            <span class="font-cinzel text-[10px] uppercase tracking-wider text-amber-200/80">Hs</span>
-                        </div>
-                        <div class="bg-emerald-900 text-amber-100 p-2 sm:p-3 rounded-lg shadow">
-                            <span id="cdMinutes" class="block font-garamond text-2xl sm:text-3xl font-bold">00</span>
-                            <span class="font-cinzel text-[10px] uppercase tracking-wider text-amber-200/80">Min</span>
-                        </div>
-                        <div class="bg-emerald-900 text-amber-100 p-2 sm:p-3 rounded-lg shadow">
-                            <span id="cdSeconds" class="block font-garamond text-2xl sm:text-3xl font-bold">00</span>
-                            <span class="font-cinzel text-[10px] uppercase tracking-wider text-amber-200/80">Seg</span>
-                        </div>
+
+                        <a
+                            href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+Lizbeth+%26+Noel&dates=20270417T180000/20270418T020000&details=¡Acompáñanos+a+celebrar+nuestra+boda!&location=Parroquia+Santa+Eduwiges,+Hermosillo,+Sonora"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 px-5 py-2.5 mt-6 rounded-full bg-amber-100 text-amber-900 border border-amber-300 font-cinzel text-xs font-semibold hover:bg-amber-200 transition-colors shadow-lg"
+                        >
+                            <i class="far fa-calendar-plus text-base"></i>
+                            Agregar a Google Calendar
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-
         <!-- SECCIÓN 2: UBICACIONES -->
         <section class="grid md:grid-cols-2 gap-6">
-            
-            <!-- Ceremonia -->
+
+            <!-- CEREMONIA -->
             <div class="bg-white rounded-2xl shadow-lg border border-emerald-900/10 overflow-hidden flex flex-col justify-between hover:shadow-xl transition-shadow">
                 <div>
-                    <!-- 📷 IMAGEN EN GITHUB: img/iglesia.jpg -->
                     <div class="relative h-48 w-full overflow-hidden">
                         <img src="iglesia.jpg" alt="Parroquia Santa Eduwiges" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-emerald-900/20"></div>
-                        <span class="absolute top-3 right-3 bg-emerald-900/80 text-amber-200 font-cinzel text-[10px] px-3 py-1 rounded-full uppercase tracking-widest backdrop-blur-sm">
-                            Ceremonia
-                        </span>
+                        <span class="absolute top-3 right-3 bg-emerald-900/80 text-amber-200 font-cinzel text-[10px] px-3 py-1 rounded-full uppercase tracking-widest backdrop-blur-sm">Ceremonia</span>
                     </div>
 
                     <div class="p-6 text-center">
@@ -292,16 +329,13 @@
                 </div>
             </div>
 
-            <!-- Recepción -->
+            <!-- RECEPCIÓN -->
             <div class="bg-white rounded-2xl shadow-lg border border-emerald-900/10 overflow-hidden flex flex-col justify-between hover:shadow-xl transition-shadow">
                 <div>
-                    <!-- 📷 IMAGEN EN GITHUB: img/jardin.jpg -->
                     <div class="relative h-48 w-full overflow-hidden">
                         <img src="jardin.jpg" alt="Salón Rose Garden" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-emerald-900/20"></div>
-                        <span class="absolute top-3 right-3 bg-emerald-900/80 text-amber-200 font-cinzel text-[10px] px-3 py-1 rounded-full uppercase tracking-widest backdrop-blur-sm">
-                            Recepción
-                        </span>
+                        <span class="absolute top-3 right-3 bg-emerald-900/80 text-amber-200 font-cinzel text-[10px] px-3 py-1 rounded-full uppercase tracking-widest backdrop-blur-sm">Recepción</span>
                     </div>
 
                     <div class="p-6 text-center">
@@ -320,12 +354,9 @@
                     </a>
                 </div>
             </div>
-
         </section>
 
-
         <!-- SECCIÓN 3: BANNER FOTO PREVIO ITINERARIO -->
-        <!-- 📷 IMAGEN EN GITHUB: img/banner.jpg -->
         <section class="relative rounded-2xl overflow-hidden shadow-xl h-64 sm:h-80 flex items-center justify-center text-center">
             <img src="banner.jpg" alt="Momentos Especiales" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-emerald-900/60 backdrop-blur-[2px]"></div>
@@ -335,132 +366,97 @@
             </div>
         </section>
 
-
         <!-- SECCIÓN 4: ITINERARIO -->
         <section class="bg-white/90 p-8 rounded-2xl shadow-lg border border-amber-200/60">
             <h3 class="font-playfair text-2xl font-bold text-center text-emerald-900 mb-8 uppercase tracking-wider">Itinerario de Nuestra Boda</h3>
-            
-                <div class="relative max-w-lg mx-auto">
 
-        <!-- Línea central ligeramente desplazada a la izquierda -->
-        <div class="absolute left-[43%] top-0 bottom-0 w-[2px] bg-amber-300/80 -translate-x-1/2"></div>
+            <div class="relative max-w-lg mx-auto">
+                <div class="absolute left-[43%] top-0 bottom-0 w-[2px] bg-amber-300/80 -translate-x-1/2"></div>
 
-        <!-- EVENTO 1 -->
-        <div class="relative grid grid-cols-[43%_57%] items-center mb-7">
+                <!-- EVENTO 1 -->
+                <div class="relative grid grid-cols-[43%_57%] items-center mb-7">
+                    <div class="flex justify-end items-center pr-2">
+                        <svg class="w-11 h-11 text-amber-600 shrink-0" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8 22 L32 8 L56 22 Z M12 25 H52 M16 25 V48 M24 25 V48 M40 25 V48 M48 25 V48 M12 48 H52 M8 53 H56 M32 13 L20 20 H44 Z"/>
+                            <path d="M32 30 C25 25 21 34 32 42 C43 34 39 25 32 30Z"/>
+                        </svg>
+                    </div>
+                    <div class="relative pl-5">
+                        <span class="absolute -left-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-white"></span>
+                        <h4 class="font-cinzel font-bold text-emerald-900 text-base leading-tight text-left">Misa / Ceremonia Religiosa</h4>
+                        <p class="font-montserrat text-amber-700 text-base mt-1">06:00 PM</p>
+                    </div>
+                </div>
 
-            <div class="flex justify-end items-center pr-2">
-                <svg class="w-11 h-11 text-amber-600 shrink-0" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 22 L32 8 L56 22 Z M12 25 H52 M16 25 V48 M24 25 V48 M40 25 V48 M48 25 V48 M12 48 H52 M8 53 H56 M32 13 L20 20 H44 Z"/>
-                    <path d="M32 30 C25 25 21 34 32 42 C43 34 39 25 32 30Z"/>
-                </svg>
+                <!-- EVENTO 2 -->
+                <div class="relative grid grid-cols-[43%_57%] items-center mb-7">
+                    <div class="relative pr-5 text-right">
+                        <span class="absolute -right-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-white"></span>
+                        <h4 class="font-cinzel font-bold text-emerald-900 text-base leading-tight">Cóctel de Bienvenida</h4>
+                        <p class="font-montserrat text-amber-700 text-base mt-1">08:00 PM</p>
+                    </div>
+                    <div class="flex justify-start items-center pl-2">
+                        <svg class="w-11 h-11 text-amber-600 shrink-0" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 9 H52 L32 37 Z M17 14 H47 L32 33 Z M32 37 V54 M23 54 H41 M19 58 H45"/>
+                            <path d="M12 9 L32 7 L52 9 M22 18 L42 18 M25 25 L39 25 M32 37 L18 46 M32 37 L46 46"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- EVENTO 3 -->
+                <div class="relative grid grid-cols-[43%_57%] items-center mb-7">
+                    <div class="flex justify-end items-center pr-2">
+                        <svg class="w-11 h-11 text-amber-600 shrink-0" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="23" cy="12" r="5"/>
+                            <circle cx="39" cy="14" r="5"/>
+                            <path d="M19 19 Q10 23 17 35 L13 54 M27 19 Q35 23 29 36 L34 55 M37 21 Q47 24 43 38 L49 53 M33 21 Q27 29 36 37 L39 54"/>
+                            <path d="M17 29 Q24 39 31 31 M30 27 Q38 35 44 29 M18 55 Q25 59 34 55 M38 55 Q44 59 50 54"/>
+                            <path d="M27 9 Q32 4 36 9"/>
+                        </svg>
+                    </div>
+                    <div class="relative pl-5">
+                        <span class="absolute -left-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-white"></span>
+                        <h4 class="font-cinzel font-bold text-emerald-900 text-base leading-tight">Primer Baile</h4>
+                        <p class="font-montserrat text-amber-700 text-base mt-1">09:00 PM</p>
+                    </div>
+                </div>
+
+                <!-- EVENTO 4 -->
+                <div class="relative grid grid-cols-[43%_57%] items-center mb-7">
+                    <div class="relative pr-5 text-right">
+                        <span class="absolute -right-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-white"></span>
+                        <h4 class="font-cinzel font-bold text-emerald-900 text-base leading-tight">Cena</h4>
+                        <p class="font-montserrat text-amber-700 text-base mt-1">09:30 PM</p>
+                    </div>
+                    <div class="flex justify-start items-center pl-2">
+                        <svg class="w-11 h-11 text-amber-600 shrink-0" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M32 9 V14 M29 9 Q32 5 35 9"/>
+                            <path d="M12 48 Q12 26 32 24 Q52 26 52 48 Z"/>
+                            <path d="M8 51 H56 M32 24 V20"/>
+                            <path d="M32 37 C25 29 19 38 32 46 C45 38 39 29 32 37Z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- EVENTO 5 -->
+                <div class="relative grid grid-cols-[43%_57%] items-center">
+                    <div class="flex justify-end items-center pr-2">
+                        <svg class="w-11 h-11 text-amber-600 shrink-0" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="32" cy="32" r="23"/>
+                            <ellipse cx="32" cy="32" rx="11" ry="23"/>
+                            <path d="M10 24 H54 M9 32 H55 M10 40 H54 M32 9 V55"/>
+                            <path d="M16 16 L48 48 M48 16 L16 48"/>
+                            <path d="M32 3 V6 M32 58 V61 M3 32 H6 M58 32 H61 M11 11 L14 14 M50 50 L53 53 M53 11 L50 14 M14 50 L11 53"/>
+                        </svg>
+                    </div>
+                    <div class="relative pl-5">
+                        <span class="absolute -left-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-white"></span>
+                        <h4 class="font-cinzel font-bold text-emerald-900 text-base leading-tight">Fin del evento</h4>
+                        <p class="font-montserrat text-amber-700 text-base mt-1">2:00 AM</p>
+                    </div>
+                </div>
             </div>
-
-            <div class="relative pl-5">
-                <span class="absolute -left-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-white"></span>
-                <h4 class="font-cinzel font-bold text-emerald-900 text-base leading-tight text-left">
-                    Misa / Ceremonia Religiosa
-                </h4>
-                <p class="font-montserrat text-amber-700 text-base mt-1">
-                    06:00 PM
-                </p>
-            </div>
-        </div>
-
-        <!-- EVENTO 2 -->
-        <div class="relative grid grid-cols-[43%_57%] items-center mb-7">
-
-            <div class="relative pr-5 text-right">
-                <span class="absolute -right-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-white"></span>
-                <h4 class="font-cinzel font-bold text-emerald-900 text-base leading-tight">
-                    Cóctel de Bienvenida
-                </h4>
-                <p class="font-montserrat text-amber-700 text-base mt-1">
-                    08:00 PM
-                </p>
-            </div>
-
-            <div class="flex justify-start items-center pl-2">
-                <svg class="w-11 h-11 text-amber-600 shrink-0" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 9 H52 L32 37 Z M17 14 H47 L32 33 Z M32 37 V54 M23 54 H41 M19 58 H45"/>
-                    <path d="M12 9 L32 7 L52 9 M22 18 L42 18 M25 25 L39 25 M32 37 L18 46 M32 37 L46 46"/>
-                </svg>
-            </div>
-        </div>
-
-        <!-- EVENTO 3 -->
-        <div class="relative grid grid-cols-[43%_57%] items-center mb-7">
-
-            <div class="flex justify-end items-center pr-2">
-                <svg class="w-11 h-11 text-amber-600 shrink-0" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="23" cy="12" r="5"/>
-                    <circle cx="39" cy="14" r="5"/>
-                    <path d="M19 19 Q10 23 17 35 L13 54 M27 19 Q35 23 29 36 L34 55 M37 21 Q47 24 43 38 L49 53 M33 21 Q27 29 36 37 L39 54"/>
-                    <path d="M17 29 Q24 39 31 31 M30 27 Q38 35 44 29 M18 55 Q25 59 34 55 M38 55 Q44 59 50 54"/>
-                    <path d="M27 9 Q32 4 36 9"/>
-                </svg>
-            </div>
-
-            <div class="relative pl-5">
-                <span class="absolute -left-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-white"></span>
-                <h4 class="font-cinzel font-bold text-emerald-900 text-base leading-tight">
-                    Primer Baile
-                </h4>
-                <p class="font-montserrat text-amber-700 text-base mt-1">
-                    09:00 PM
-                </p>
-            </div>
-        </div>
-
-        <!-- EVENTO 4 -->
-        <div class="relative grid grid-cols-[43%_57%] items-center mb-7">
-
-            <div class="relative pr-5 text-right">
-                <span class="absolute -right-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-white"></span>
-                <h4 class="font-cinzel font-bold text-emerald-900 text-base leading-tight">
-                    Cena
-                </h4>
-                <p class="font-montserrat text-amber-700 text-base mt-1">
-                    09:30 PM
-                </p>
-            </div>
-
-            <div class="flex justify-start items-center pl-2">
-                <svg class="w-11 h-11 text-amber-600 shrink-0" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M32 9 V14 M29 9 Q32 5 35 9"/>
-                    <path d="M12 48 Q12 26 32 24 Q52 26 52 48 Z"/>
-                    <path d="M8 51 H56 M32 24 V20"/>
-                    <path d="M32 37 C25 29 19 38 32 46 C45 38 39 29 32 37Z"/>
-                </svg>
-            </div>
-        </div>
-
-        <!-- EVENTO 5 -->
-        <div class="relative grid grid-cols-[43%_57%] items-center">
-
-            <div class="flex justify-end items-center pr-2">
-                <svg class="w-11 h-11 text-amber-600 shrink-0" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="32" cy="32" r="23"/>
-                    <ellipse cx="32" cy="32" rx="11" ry="23"/>
-                    <path d="M10 24 H54 M9 32 H55 M10 40 H54 M32 9 V55"/>
-                    <path d="M16 16 L48 48 M48 16 L16 48"/>
-                    <path d="M32 3 V6 M32 58 V61 M3 32 H6 M58 32 H61 M11 11 L14 14 M50 50 L53 53 M53 11 L50 14 M14 50 L11 53"/>
-                </svg>
-            </div>
-
-            <div class="relative pl-5">
-                <span class="absolute -left-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-white"></span>
-                <h4 class="font-cinzel font-bold text-emerald-900 text-base leading-tight">
-                    Fin del evento
-                </h4>
-                <p class="font-montserrat text-amber-700 text-base mt-1">
-                    2:00 AM
-                </p>
-            </div>
-        </div>
-
-    </div>
-</section>
-
+        </section>
 
         <!-- SECCIÓN 5: FOTOGRAFÍA ESPECIAL 3 -->
         <section class="bg-white/90 p-4 sm:p-6 rounded-2xl shadow-xl border border-amber-200/60 overflow-hidden">
@@ -469,7 +465,6 @@
                 <img src="galeria3.jpg" alt="Lizbeth y Noel, un momento especial" class="block w-full h-auto object-contain">
             </div>
         </section>
-
 
         <!-- SECCIÓN 6: VESTIMENTA Y MESA DE REGALOS -->
         <section class="grid md:grid-cols-2 gap-6">
@@ -491,8 +486,7 @@
             </div>
         </section>
 
-
-        <!-- SECCIÓN 6: FOTOGRAFÍA ESPECIAL 4 -->
+        <!-- SECCIÓN 7: FOTOGRAFÍA ESPECIAL 4 -->
         <section class="bg-white/90 p-4 sm:p-6 rounded-2xl shadow-xl border border-amber-200/60 overflow-hidden">
             <div class="h-1.5 bg-gradient-to-r from-emerald-900 via-amber-400 to-emerald-900 rounded-full mb-4"></div>
             <div class="max-w-md mx-auto rounded-xl overflow-hidden border-[5px] border-[#f5efe6] shadow-md">
@@ -500,13 +494,12 @@
             </div>
         </section>
 
-
-        <!-- SECCIÓN 7: CANCIONES -->
+        <!-- SECCIÓN 8: SUGERENCIA DE CANCIONES -->
         <section class="bg-white/90 p-8 rounded-2xl shadow-lg border border-amber-200/60 text-center">
             <i class="fas fa-compact-disc text-3xl text-emerald-800 mb-3"></i>
             <h3 class="font-cinzel text-xl font-bold text-emerald-900 uppercase tracking-wider mb-2">¿Qué canción no puede faltar?</h3>
             <p class="font-garamond text-gray-600 mb-4 text-sm">Ayúdanos a armar la playlist de la noche proponiendo tu canción favorita</p>
-            
+
             <form id="songForm" onsubmit="sendSongWhatsApp(event)" class="max-w-md mx-auto space-y-3">
                 <input type="text" id="songName" required placeholder="Nombre de la Canción y Artista" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-800 outline-none font-montserrat text-sm">
                 <button type="submit" class="w-full py-2.5 px-4 rounded-xl bg-emerald-800 text-amber-100 font-cinzel text-xs font-bold uppercase hover:bg-emerald-900 transition">
@@ -515,10 +508,8 @@
             </form>
         </section>
 
-
-        <!-- SECCIÓN 8: CONFIRMACIÓN RSVP CON FOTO DE FONDO -->
+        <!-- SECCIÓN 9: CONFIRMACIÓN RSVP -->
         <section class="relative rounded-2xl shadow-xl overflow-hidden border border-emerald-900/30">
-            <!-- 📷 IMAGEN EN GITHUB: img/fondo-rsvp.jpg -->
             <img src="fondo-rsvp.jpg" alt="Fondo Confirmación" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-emerald-900/65 backdrop-blur-[1px]"></div>
 
@@ -543,8 +534,7 @@
 
                     <div id="countContainer">
                         <label for="attendingCount" class="block font-cinzel text-xs font-bold text-amber-100 uppercase mb-1">Número de Asistentes</label>
-                        <select id="attendingCount" class="w-full px-4 py-3 rounded-xl border border-amber-300/30 bg-white/90 text-gray-900 focus:ring-2 focus:ring-amber-300 outline-none font-montserrat text-sm transition">
-                        </select>
+                        <select id="attendingCount" class="w-full px-4 py-3 rounded-xl border border-amber-300/30 bg-white/90 text-gray-900 focus:ring-2 focus:ring-amber-300 outline-none font-montserrat text-sm transition"></select>
                     </div>
 
                     <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-amber-400 text-emerald-950 font-cinzel text-xs font-bold tracking-widest uppercase hover:bg-amber-300 transition-all duration-300 shadow-lg flex items-center justify-center gap-2">
@@ -554,29 +544,26 @@
             </div>
         </section>
 
-
         <!-- FOOTER -->
         <footer class="text-center py-6 border-t border-amber-200">
             <p class="font-script text-4xl text-gold-gradient">Lizbeth & Noel</p>
             <p class="font-cinzel text-[10px] tracking-widest text-gray-500 uppercase mt-1">¡Esperamos contar con tu presencia!</p>
         </footer>
-
     </main>
-
 
     <!-- MODAL DATOS BANCARIOS -->
     <div id="bankModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl p-6 sm:p-8 max-w-sm w-full shadow-2xl relative text-center border border-amber-200">
-            <button onclick="toggleBankModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-xl w-8 h-8 rounded-full flex items-center justify-center">&times;</button>
+            <button onclick="toggleBankModal()" aria-label="Cerrar ventana" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-xl w-8 h-8 rounded-full flex items-center justify-center">&times;</button>
             <i class="fas fa-university text-3xl text-emerald-800 mb-3"></i>
             <h4 class="font-cinzel text-lg font-bold text-emerald-900 uppercase mb-1">Datos Bancarios</h4>
             <p class="font-garamond text-sm text-gray-600 mb-4">Agradecemos profundamente tu cariño y buenos deseos.</p>
-            
+
             <div class="bg-cream-100 p-4 rounded-xl text-left space-y-2 font-montserrat text-xs border border-cream-200 mb-4">
                 <p><span class="font-semibold text-emerald-900">Banco:</span> BBVA</p>
                 <p><span class="font-semibold text-emerald-900">Titular:</span> Lizbeth Contreras</p>
                 <p><span class="font-semibold text-emerald-900">Cuenta:</span> 159 473 3421</p>
-                <p class="flex justify-between items-center"><span class="font-semibold text-emerald-900">CLABE:</span> <span id="clabeNum">012 180 01594733421 1</span></p>
+                <p class="flex justify-between items-center gap-2"><span class="font-semibold text-emerald-900">CLABE:</span> <span id="clabeNum">012 180 01594733421 1</span></p>
             </div>
 
             <button onclick="copyCLABE()" class="w-full py-2.5 px-4 rounded-xl bg-emerald-800 text-amber-100 font-cinzel text-xs font-bold hover:bg-emerald-900 transition flex items-center justify-center gap-2">
@@ -586,15 +573,16 @@
         </div>
     </div>
 
-
     <!-- JAVASCRIPT -->
     <script>
         let passesCount = 2;
         const targetDate = new Date("April 17, 2027 18:00:00").getTime();
+        const whatsappPhone = "5216622977259";
 
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
-            // Personaliza los lugares desde el enlace de cada invitado: ?pases=1, ?pases=2, etc.
+
+            // Personaliza los lugares desde el enlace: ?pases=1, ?pases=2, etc.
             const numParam = urlParams.get('pases') || urlParams.get('number') || urlParams.get('pass');
             const parsedPasses = Number.parseInt(numParam, 10);
 
@@ -604,14 +592,18 @@
 
             const badgeEl = document.getElementById('passesCount');
             const passesLabel = document.getElementById('passesLabel');
+
             if (badgeEl) badgeEl.innerText = passesCount;
+
             if (passesLabel) {
                 passesLabel.innerText = passesCount === 1 ? 'LUGAR EN SU HONOR' : 'LUGARES EN SU HONOR';
             }
 
             const selectEl = document.getElementById('attendingCount');
+
             if (selectEl) {
                 selectEl.innerHTML = '';
+
                 for (let i = 1; i <= passesCount; i++) {
                     const opt = document.createElement('option');
                     opt.value = i;
@@ -621,6 +613,7 @@
             }
 
             initCountdown();
+            initAttendanceFields();
         });
 
         function openInvitation() {
@@ -629,26 +622,27 @@
             const mainContent = document.getElementById('mainContent');
 
             if (cover.classList.contains('is-opening')) return;
+
             cover.classList.add('is-opening');
             envelope.classList.add('envelope-open');
 
             const audio = document.getElementById('bgAudio');
+
             if (audio) {
-                audio.play().catch(e => console.log('Audio autoplay restringido:', e));
+                audio.play().catch(error => console.log('Audio autoplay restringido:', error));
             }
 
             setTimeout(() => {
                 cover.classList.add('opacity-0', 'pointer-events-none');
-                
+
                 setTimeout(() => {
                     cover.classList.add('hidden');
                     mainContent.classList.remove('hidden');
-                    
+
                     setTimeout(() => {
                         mainContent.classList.remove('opacity-0');
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     }, 50);
-
                 }, 600);
             }, 700);
         }
@@ -657,9 +651,12 @@
             const audio = document.getElementById('bgAudio');
             const icon = document.getElementById('audioIcon');
 
+            if (!audio || !icon) return;
+
             if (audio.paused) {
-                audio.play();
-                icon.className = 'fas fa-music text-lg';
+                audio.play().then(() => {
+                    icon.className = 'fas fa-music text-lg';
+                }).catch(error => console.log('No se pudo reproducir el audio:', error));
             } else {
                 audio.pause();
                 icon.className = 'fas fa-volume-mute text-lg';
@@ -682,10 +679,10 @@
                     document.getElementById('cdMinutes').innerText = String(minutes).padStart(2, '0');
                     document.getElementById('cdSeconds').innerText = String(seconds).padStart(2, '0');
                 } else {
-                    document.getElementById('cdDays').innerText = "00";
-                    document.getElementById('cdHours').innerText = "00";
-                    document.getElementById('cdMinutes').innerText = "00";
-                    document.getElementById('cdSeconds').innerText = "00";
+                    document.getElementById('cdDays').innerText = '00';
+                    document.getElementById('cdHours').innerText = '00';
+                    document.getElementById('cdMinutes').innerText = '00';
+                    document.getElementById('cdSeconds').innerText = '00';
                 }
             }
 
@@ -693,52 +690,90 @@
             setInterval(updateClock, 1000);
         }
 
+        function initAttendanceFields() {
+            const status = document.getElementById('attendanceStatus');
+            const countContainer = document.getElementById('countContainer');
+
+            if (!status || !countContainer) return;
+
+            function updateAttendanceFields() {
+                countContainer.classList.toggle('hidden', status.value !== 'si');
+            }
+
+            status.addEventListener('change', updateAttendanceFields);
+            updateAttendanceFields();
+        }
+
         function toggleBankModal() {
             const modal = document.getElementById('bankModal');
-            modal.classList.toggle('hidden');
+            if (modal) modal.classList.toggle('hidden');
         }
 
         function copyCLABE() {
-            const clabeText = document.getElementById('clabeNum').innerText;
-            navigator.clipboard.writeText(clabeText).then(() => {
+            const clabeText = document.getElementById('clabeNum').innerText.replace(/\s/g, '');
+            const toast = document.getElementById('copyToast');
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(clabeText).then(() => {
+                    toast.classList.remove('hidden');
+                    setTimeout(() => toast.classList.add('hidden'), 3000);
+                }).catch(() => fallbackCopyCLABE(clabeText));
+            } else {
+                fallbackCopyCLABE(clabeText);
+            }
+        }
+
+        function fallbackCopyCLABE(text) {
+            const temporaryInput = document.createElement('textarea');
+            temporaryInput.value = text;
+            temporaryInput.style.position = 'fixed';
+            temporaryInput.style.opacity = '0';
+            document.body.appendChild(temporaryInput);
+            temporaryInput.select();
+
+            try {
+                document.execCommand('copy');
                 const toast = document.getElementById('copyToast');
                 toast.classList.remove('hidden');
                 setTimeout(() => toast.classList.add('hidden'), 3000);
-            });
+            } catch (error) {
+                alert('No fue posible copiar automáticamente. Puedes seleccionar la CLABE y copiarla manualmente.');
+            }
+
+            temporaryInput.remove();
         }
 
-        function sendWhatsApp(e) {
-            e.preventDefault();
+        function sendWhatsApp(event) {
+            event.preventDefault();
+
             const name = document.getElementById('fullName').value.trim();
             const status = document.getElementById('attendanceStatus').value;
             const count = document.getElementById('attendingCount').value;
-            const note = document.getElementById('rsvpMessage').value.trim();
 
             if (!name) return;
 
-            const phone = "5216622977259"; 
-            let text = "";
+            let message = '';
 
-            if (status === "si") {
-                text = `¡Hola! Confirmo mi asistencia a la Boda de Lizbeth & Noel.\n\n👤 *Nombre:* ${name}\n👥 *Asistentes:* ${count} persona(s)`;
-                if (note) text += `\n💬 *Mensaje/Notas:* ${note}`;
+            if (status === 'si') {
+                message = `¡Hola! Confirmo mi asistencia a la Boda de Lizbeth & Noel.\n\n👤 *Nombre:* ${name}\n👥 *Asistentes:* ${count} persona(s)`;
             } else {
-                text = `Hola Lizbeth y Noel, lamentablemente no podré asistir a su boda.\n\n👤 *Nombre:* ${name}`;
-                if (note) text += `\n💬 *Mensaje:* ${note}`;
+                message = `Hola Lizbeth y Noel, lamentablemente no podré asistir a su boda.\n\n👤 *Nombre:* ${name}`;
             }
 
-            const whatsappUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(text)}`;
-            window.open(whatsappUrl, '_blank');
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappPhone}&text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
         }
 
-        function sendSongWhatsApp(e) {
-            e.preventDefault();
+        function sendSongWhatsApp(event) {
+            event.preventDefault();
+
             const song = document.getElementById('songName').value.trim();
             if (!song) return;
 
-            const phone = "5216622977259";
-            const text = `¡Hola! Me gustaría sugerir esta canción para la fiesta de su boda 🎶:\n\n🎵 *Canción:* ${song}`;
-            window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(text)}`, '_blank');
+            const message = `¡Hola! Me gustaría sugerir esta canción para la fiesta de su boda 🎶:\n\n🎵 *Canción:* ${song}`;
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappPhone}&text=${encodeURIComponent(message)}`;
+
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
         }
     </script>
 </body>
