@@ -452,12 +452,12 @@
         <section class="relative rounded-2xl shadow-xl overflow-hidden border border-emerald-900/30">
             <!-- 📷 IMAGEN EN GITHUB: img/fondo-rsvp.jpg -->
             <img src="fondo-rsvp.jpg" alt="Fondo Confirmación" class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-emerald-950/85 backdrop-blur-sm"></div>
+            <div class="absolute inset-0 bg-emerald-900/65 backdrop-blur-md"></div>
 
             <div class="relative z-10 p-8 sm:p-10 text-center text-white">
                 <i class="fab fa-whatsapp text-4xl text-emerald-400 mb-3"></i>
                 <h3 class="font-cinzel text-2xl font-bold uppercase tracking-wider mb-2 text-amber-200">Confirmación de Asistencia</h3>
-                <p class="font-garamond text-gray-200 mb-6">Por favor confirma tu presencia antes del 15 de Marzo de 2027.</p>
+                <p class="font-garamond text-gray-200 mb-6">Por favor confirma tu presencia antes del 20 de Enero de 2027.</p>
 
                 <form id="rsvpForm" onsubmit="sendWhatsApp(event)" class="max-w-md mx-auto space-y-4 text-left">
                     <div>
@@ -477,11 +477,6 @@
                         <label for="attendingCount" class="block font-cinzel text-xs font-bold text-amber-100 uppercase mb-1">Número de Asistentes</label>
                         <select id="attendingCount" class="w-full px-4 py-3 rounded-xl border border-amber-300/30 bg-white/90 text-gray-900 focus:ring-2 focus:ring-amber-300 outline-none font-montserrat text-sm transition">
                         </select>
-                    </div>
-
-                    <div>
-                        <label for="rsvpMessage" class="block font-cinzel text-xs font-bold text-amber-100 uppercase mb-1">Mensaje o Restricción Alimenticia (Opcional)</label>
-                        <textarea id="rsvpMessage" rows="2" placeholder="Ej. ¡Felicidades! / Menú vegetariano" class="w-full px-4 py-2.5 rounded-xl border border-amber-300/30 bg-white/90 text-gray-900 focus:ring-2 focus:ring-amber-300 outline-none font-montserrat text-sm transition"></textarea>
                     </div>
 
                     <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-amber-400 text-emerald-950 font-cinzel text-xs font-bold tracking-widest uppercase hover:bg-amber-300 transition-all duration-300 shadow-lg flex items-center justify-center gap-2">
