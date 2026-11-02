@@ -190,11 +190,15 @@
             <span class="seal-hint">Haz clic aquí</span>
         </div>
 
-        <!-- Pases personalizados: conserva number, pases y pass en la URL -->
-        <div class="absolute bottom-2 left-0 right-0 z-30 text-center pointer-events-none">
-            <p class="font-cinzel text-[9px] sm:text-[10px] tracking-[0.28em] text-[#315b45] uppercase font-semibold mb-0.5">Hemos reservado</p>
-            <span id="passesCount" class="font-garamond text-xl sm:text-2xl font-bold text-[#315b45]">1</span>
-            <p id="passesLabel" class="font-cinzel text-[9px] sm:text-[10px] tracking-[0.2em] text-[#315b45] uppercase font-medium">LUGARES EN SU HONOR</p>
+        <!-- Contador HTML independiente: el número NO está dentro de la imagen -->
+        <div class="absolute bottom-[4.2%] left-1/2 -translate-x-1/2 z-30 w-[78%] max-w-[310px] text-center pointer-events-none">
+            <div class="inline-flex flex-col items-center justify-center px-5 py-2 rounded-xl bg-[#f8f3e9]/90 border border-[#b99a55]/70 shadow-[0_4px_14px_rgba(48,57,37,.12)] backdrop-blur-[2px]">
+                <p class="font-cinzel text-[9px] sm:text-[10px] tracking-[0.24em] text-[#52634b] uppercase font-semibold">Hemos reservado</p>
+                <div class="flex items-baseline justify-center gap-2">
+                    <span id="passesCount" class="font-garamond text-2xl sm:text-3xl font-bold leading-tight text-[#244b38]">4</span>
+                    <span id="passesLabel" class="font-cinzel text-[9px] sm:text-[10px] tracking-[0.12em] text-[#52634b] uppercase font-medium">LUGARES EN SU HONOR</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -527,10 +531,12 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const numParam = urlParams.get('number') || urlParams.get('pases') || urlParams.get('pass');
-            
-            if (numParam && !isNaN(numParam) && parseInt(numParam) > 0) {
-                passesCount = parseInt(numParam);
+            // Personaliza los lugares desde el enlace de cada invitado: ?pases=1, ?pases=2, etc.
+            const numParam = urlParams.get('pases') || urlParams.get('number') || urlParams.get('pass');
+            const parsedPasses = Number.parseInt(numParam, 10);
+
+            if (numParam && Number.isInteger(parsedPasses) && parsedPasses > 0 && parsedPasses <= 20) {
+                passesCount = parsedPasses;
             }
 
             const badgeEl = document.getElementById('passesCount');
